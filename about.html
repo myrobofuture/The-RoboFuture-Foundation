@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - RoboFuture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Kumbh Sans', sans-serif;
+      background-color: #0c0c1c;
+      color: white;
+      line-height: 2;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #0b0b18;
+      padding: 30px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background-color: cyan;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Sidebar Button */
+    .sidebar-toggle {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      background-color: #111129;
+      padding: 10px 20px;
+      border-radius: 0 15px 15px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      cursor: pointer;
+      color: cyan;
+      font-weight: bold;
+    }
+
+    /* Sidebar Menu */
+    .sidebar-menu {
+      position: fixed;
+      top: 150px;
+      left: -200px;
+      width: 200px;
+      background-color: #111129;
+      padding: 20px;
+      transition: left 0.3s ease;
+      border-radius: 0 15px 15px 0;
+      z-index: 998;
+    }
+
+    .sidebar-menu.active {
+      left: 0;
+    }
+
+    .sidebar-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-menu ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Kumbh Sans', sans-serif;
+    }
+
+    .sidebar-menu ul li a:hover {
+      color: cyan;
+    }
+
+    /* Main content */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background-color: #15152b;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 1.5em;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    li::marker {
+      color: cyan;
+    }
+    .robotlogo {
+      position: fixed;
+      bottom: 500px;
+      right: 35px;
+      height: 140px;
+      width: auto;
+      z-index: 500;
+      border-radius: 50%;
+    }
+    .CodingLogo {
+      position: fixed;
+      bottom: 200px;
+      right: 0px;
+      height: 145px;
+      width: auto;
+      z-index: 500;
+      
+    }
+   .instagram {
+      position: fixed;
+      bottom: 400px;
+      left: 35px;
+      height: 140px;
+      width: auto;
+      z-index: 500;
+      border-radius: 50%;
+    }
+    
+    /* Bottom-Left Logo */
+    
+    .corner-logo {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      height: 140px;
+      width: auto;
+      z-index: 500;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="OurProgs.html">Programs
+      </a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar Toggle -->
+  <div class="sidebar-toggle" onclick="toggleSidebar()">☰ Sections</div>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar-menu" id="sidebarMenu">
+    <ul>
+      <li><a href="#mission">Our Mission</a></li>
+      <li><a href="#offer">What We Offer</a></li>
+      <li><a href="#how">How It Works</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="mission">
+      <h2>Our Mission</h2>
+      <p>
+        My mission is to empower passionate 5th to 8th grade students with the tools, support, and knowledge they need to succeed in robotics.
+        Through live and self-paced courses, peer mentorship, and guidance on key skills like coding, building, and keeping an engineering notebook,
+        I aim to make robotics more approachable and fun. This organization was created to give younger students the head start I wish I had when I began.
+        It’s all about helping them grow their confidence, strengthen their problem-solving and engineering skills, and get ready to compete in robotics competitions.
+      </p>
+    </section>
+
+    <section id="offer">
+      <h2>What We Offer</h2>
+      <ul>
+        <li>🤖 Live Robotics Courses</li>
+        <li>📦 Self-Paced Learning Modules</li>
+        <li>👬 1-on-1 Peer Mentorship</li>
+      </ul>
+    </section>
+
+    <section id="how">
+      <h2>How It Works</h2>
+      <p>
+        Students sign up for courses or mentorship sessions and follow a guided learning path that includes engineering notebook documentation,
+        coding fundamentals, and hands-on building challenges. Our mentors provide feedback, guidance, and inspiration throughout the journey.
+      </p>
+    </section>
+  </main>
+  <img src="images/Instagram.png" alt="Instagram" class="instagram"/>
+  <img src="images/RobotLogo.png" alt="robotlogo" class="robotlogo"/>
+  <img src="images/CodingLogo.png" alt="CodingLogo" class="CodingLogo"/>
+  
+  <!-- Logo -->
+  <img src="images/RoboFuture Logo.jpg" alt="RoboFuture Logo" class="corner-logo"/>
+
+  <!-- Sidebar Toggle Script -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebarMenu").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

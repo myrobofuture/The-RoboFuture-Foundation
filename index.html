@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RoboFuture Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+  --bg-color: #0f0f1a;
+  --text-color: white;
+  --accent: #00f7ff;
+  --button-bg: #00f7ff;
+  --button-text: #000;
+  --nav-bg: rgba(13, 13, 29, 0.9);
+}
+
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #111;
+  --accent: #007aff;
+  --button-bg: #007aff;
+  --button-text: #fff;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+  nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+  background-color: var(--nav-bg);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .theme-toggle-wrapper {
+      position: absolute;
+      right: 20px;
+      top: 18px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-buttons a {
+      background: var(--button-bg);
+      color: var(--button-text);
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .hero-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .scroll-down {
+      margin-top: 3rem;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      color: var(--accent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    .typing-text {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--accent);
+      height: 1.5em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+      animation: typing 3s steps(30, end), blink 0.8s step-end infinite alternate;
+      animation-delay: 0s, 3s;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(13, 13, 29, 0.9);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="OurProgs.html">Programs</a>
+      <a href="register.html">Register</a>
+    <div class="theme-toggle-wrapper">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1><span>RoboFuture</span> Foundation</h1>
+    <p>Fueling Ambition and Igniting Young Minds to Compete, Build, and to Triumph.</p>
+    <div class="hero-buttons">
+      <a href="about.html">How It Works</a>
+      <a href="register.html">Get Started</a>
+    </div>
+    <div class="scroll-down">↓</div>
+    <div class="typing-text" id="typing-text"></div>
+  </section>
+
+  <footer>
+    © 2025 RoboFuture Foundation | Empowering Young Minds
+  </footer>
+
+  <!-- tsParticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <script>
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: true, zIndex: -1 },
+      particles: {
+        number: { value: 70 },
+        color: { value: "#00f7ff" },
+        links: { enable: true, color: "#00f7ff", distance: 150 },
+        move: { enable: true, speed: 1 },
+        size: { value: 2 },
+      },
+      background: {
+        color: {
+          value: "transparent"
+        }
+      }
+    });
+  </script>
+
+  <!-- Theme Toggle -->
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    toggle.addEventListener('change', () => {
+      html.setAttribute('data-theme',
+        toggle.checked ? 'light' : 'dark');
+    });
+  </script>
+
+  <!-- Typing Animation (Loop with delay) -->
+  <script>
+    const typing = document.getElementById("typing-text");
+    const phrase = "The Road to Becoming a Champion Begins Here";
+    function typeLoop() {
+      typing.innerHTML = "";
+      let i = 0;
+      const type = setInterval(() => {
+        typing.innerHTML += phrase[i];
+        i++;
+        if (i >= phrase.length) {
+          clearInterval(type);
+          setTimeout(typeLoop, 2000);
+        }
+      }, 100);
+    }
+    typeLoop();
+  </script>
+</body>
+</html>
