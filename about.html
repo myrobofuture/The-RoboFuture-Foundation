@@ -9,20 +9,44 @@
     body {
       margin: 0;
       font-family: 'Kumbh Sans', sans-serif;
-      background-color: #0c0c1c;
+      background: linear-gradient(135deg, #0c0c1c 60%, #1a1a3c 100%);
       color: white;
       line-height: 2;
       scroll-behavior: smooth;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated Stars Background */
+    .stars {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle {
+      to { opacity: 0.3; }
     }
 
     /* Navbar */
     header {
-      background-color: #0b0b18;
-      padding: 30px 0;
+      background: rgba(11,11,24,0.95);
+      padding: 30px 0 10px 0;
       text-align: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
     }
 
     nav {
@@ -35,8 +59,10 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       position: relative;
+      letter-spacing: 1px;
+      transition: color 0.2s;
     }
 
     nav a::after {
@@ -46,10 +72,13 @@
       bottom: -5px;
       width: 0%;
       height: 2px;
-      background-color: cyan;
+      background: linear-gradient(90deg, #00ffe7, #00bfff);
       transition: width 0.3s ease;
     }
 
+    nav a:hover {
+      color: #00ffe7;
+    }
     nav a:hover::after {
       width: 100%;
     }
@@ -59,27 +88,36 @@
       position: fixed;
       top: 100px;
       left: 0;
-      background-color: #111129;
-      padding: 10px 20px;
+      background: linear-gradient(90deg, #111129 80%, #00ffe7 120%);
+      padding: 12px 24px;
       border-radius: 0 15px 15px 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       z-index: 999;
       cursor: pointer;
       color: cyan;
       font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      transition: background 0.2s;
+    }
+    .sidebar-toggle:hover {
+      background: linear-gradient(90deg, #00ffe7 40%, #111129 100%);
+      color: #111129;
     }
 
     /* Sidebar Menu */
     .sidebar-menu {
       position: fixed;
       top: 150px;
-      left: -200px;
-      width: 200px;
-      background-color: #111129;
-      padding: 20px;
+      left: -220px;
+      width: 220px;
+      background: rgba(17,17,41,0.95);
+      padding: 24px 18px;
       transition: left 0.3s ease;
       border-radius: 0 15px 15px 0;
       z-index: 998;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
     }
 
     .sidebar-menu.active {
@@ -92,37 +130,56 @@
     }
 
     .sidebar-menu ul li {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .sidebar-menu ul li a {
-      color: white;
+      color: cyan;
       text-decoration: none;
       font-family: 'Kumbh Sans', sans-serif;
+      font-size: 1.08rem;
+      transition: color 0.2s;
     }
 
     .sidebar-menu ul li a:hover {
-      color: cyan;
+      color: #fff;
+      text-shadow: 0 0 8px #00ffe7;
     }
 
     /* Main content */
     main {
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 60px auto 40px auto;
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     section {
-      background-color: #15152b;
-      padding: 30px;
-      border-radius: 12px;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      background: rgba(21,21,43,0.85);
+      padding: 36px 32px;
+      border-radius: 18px;
+      margin-bottom: 48px;
+      box-shadow: 0 8px 32px rgba(0, 255, 231, 0.08), 0 2px 16px rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      border: 1.5px solid rgba(0,255,231,0.08);
+      animation: fadeInUp 1s;
+      transition: box-shadow 0.2s;
+    }
+    section:hover {
+      box-shadow: 0 12px 40px rgba(0,255,231,0.18), 0 2px 16px rgba(0,0,0,0.35);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
     }
 
     h2 {
-      color: white;
-      margin-bottom: 15px;
+      color: #00ffe7;
+      margin-bottom: 18px;
+      font-size: 2.1rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px #00ffe733;
     }
 
     ul {
@@ -130,11 +187,31 @@
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 1.08rem;
+      background: linear-gradient(90deg, #00ffe7 0%, #00bfff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     li::marker {
-      color: cyan;
+      color: #00ffe7;
+      font-size: 1.2em;
+    }
+
+    /* Logo Images */
+    .robotlogo, .CodingLogo, .instagram, .corner-logo {
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 16px rgba(0,255,231,0.12);
+    }
+    .robotlogo:hover, .CodingLogo:hover, .instagram:hover, .corner-logo:hover {
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 8px 32px rgba(0,255,231,0.25);
+      filter: brightness(1.15);
     }
     .robotlogo {
       position: fixed;
@@ -152,9 +229,8 @@
       height: 145px;
       width: auto;
       z-index: 500;
-      
     }
-   .instagram {
+    .instagram {
       position: fixed;
       bottom: 400px;
       left: 35px;
@@ -163,9 +239,6 @@
       z-index: 500;
       border-radius: 50%;
     }
-    
-    /* Bottom-Left Logo */
-    
     .corner-logo {
       position: fixed;
       bottom: 30px;
@@ -175,18 +248,39 @@
       z-index: 500;
       border-radius: 50%;
     }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main { max-width: 98vw; }
+      .robotlogo, .CodingLogo, .instagram, .corner-logo {
+        height: 90px;
+      }
+      .sidebar-toggle, .sidebar-menu { font-size: 0.95rem; }
+    }
+    @media (max-width: 600px) {
+      nav { gap: 24px; }
+      section { padding: 18px 8px; }
+      h2 { font-size: 1.3rem; }
+      .robotlogo, .CodingLogo, .instagram, .corner-logo {
+        height: 60px;
+      }
+      .sidebar-toggle { padding: 8px 12px; }
+      .sidebar-menu { width: 140px; padding: 12px 6px;}
+    }
   </style>
 </head>
 <body>
+  <!-- Animated Stars -->
+  <div class="stars"></div>
 
   <!-- Top Navbar -->
   <header>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="OurProgs.html">Programs
-      </a>
+      <a href="OurProgs.html">Programs</a>
       <a href="register.html">Register</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -207,9 +301,9 @@
     <section id="mission">
       <h2>Our Mission</h2>
       <p>
-        My mission is to empower passionate 5th to 8th grade students with the tools, support, and knowledge they need to succeed in robotics.
-        Through live and self-paced courses, peer mentorship, and guidance on key skills like coding, building, and keeping an engineering notebook,
-        I aim to make robotics more approachable and fun. This organization was created to give younger students the head start I wish I had when I began.
+        My mission is to empower passionate <span style="color:#00ffe7;font-weight:bold;">5th to 8th grade students</span> with the tools, support, and knowledge they need to succeed in robotics.<br>
+        Through <span style="color:#00ffe7;">live and self-paced courses</span>, peer mentorship, and guidance on key skills like coding, building, and keeping an engineering notebook,<br>
+        I aim to make robotics more approachable and fun. This organization was created to give younger students the head start I wish I had when I began.<br>
         It’s all about helping them grow their confidence, strengthen their problem-solving and engineering skills, and get ready to compete in robotics competitions.
       </p>
     </section>
@@ -226,7 +320,7 @@
     <section id="how">
       <h2>How It Works</h2>
       <p>
-        Students sign up for courses or mentorship sessions and follow a guided learning path that includes engineering notebook documentation,
+        Students sign up for courses or mentorship sessions and follow a guided learning path that includes engineering notebook documentation,<br>
         coding fundamentals, and hands-on building challenges. Our mentors provide feedback, guidance, and inspiration throughout the journey.
       </p>
     </section>
@@ -234,16 +328,29 @@
   <img src="images/Instagram.png" alt="Instagram" class="instagram"/>
   <img src="images/RobotLogo.png" alt="robotlogo" class="robotlogo"/>
   <img src="images/CodingLogo.png" alt="CodingLogo" class="CodingLogo"/>
-  
   <!-- Logo -->
   <img src="images/RoboFuture Logo.jpg" alt="RoboFuture Logo" class="corner-logo"/>
 
   <!-- Sidebar Toggle Script -->
   <script>
+    // Animated stars background
+    function createStars() {
+      const starsContainer = document.querySelector('.stars');
+      for (let i = 0; i < 60; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.animationDuration = (Math.random() * 1.5 + 1) + 's';
+        starsContainer.appendChild(star);
+      }
+    }
+    createStars();
+
     function toggleSidebar() {
       document.getElementById("sidebarMenu").classList.toggle("active");
     }
   </script>
-
 </body>
 </html>
